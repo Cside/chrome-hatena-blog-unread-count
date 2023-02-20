@@ -1,0 +1,20 @@
+{
+  "version": "",
+  "manifest_version": 3,
+  "name": "はてなブログ 未読数表示",
+  "description": "はてな数の未読数を表示する",
+  "action": {
+    "default_icon": "images/icon38.png"
+  },
+  "background": {
+    "service_worker": "src/background/main.ts",
+    "type": "module"
+  },
+  "permissions": [],
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+}
