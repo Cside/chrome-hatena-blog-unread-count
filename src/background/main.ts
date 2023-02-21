@@ -21,7 +21,7 @@ chrome.webRequest.onCompleted.addListener(
   { urls: [`${ANTENNA_URL}*`] },
 );
 
-const checkUpdate = async () => {
+const updateUnreadCount = async () => {
   try {
     const res = await fetch(API_URL, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -46,6 +46,6 @@ const checkUpdate = async () => {
   await chrome.action.setBadgeBackgroundColor({
     color: BADGE_BACKGROUND_COLOR,
   });
-  setInterval(checkUpdate, CHECK_INTERVAL);
-  await checkUpdate();
+  setInterval(updateUnreadCount, CHECK_INTERVAL);
+  await updateUnreadCount();
 })();
