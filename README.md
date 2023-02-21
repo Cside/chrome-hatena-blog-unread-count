@@ -3,7 +3,7 @@
 [Chrome Web Store](https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm)
 
 <a href="https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm">
-  <img src="https://user-images.githubusercontent.com/315510/220332645-00a27635-2156-46ce-8628-0b216302d1fb.png" />
+  <img src="https://user-images.githubusercontent.com/315510/220348695-0f3b8612-a5ae-414e-b884-5efafbc211ec.png" />
 </a>
 
 はてなブログの購読リストの未読数を通知します。
