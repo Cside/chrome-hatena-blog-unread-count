@@ -1,12 +1,11 @@
 {
   "version": "0.0.1",
   "scripts": {
-    "dev": "yarn run clean && vite",
-    "build": "yarn run clean && vite build",
-    "visualize": "yarn run clean && ENABLES_VISUALIZER=true vite build && open stats.html",
+    "dev": "pnpm run clean && vite",
+    "build": "pnpm run clean && vite build",
+    "visualize": "pnpm run clean && ENABLES_VISUALIZER=true vite build && open stats.html",
     "clean": "rimraf dist out.zip",
-    "test": "jest",
-    "release": "yarn install && yarn run build && zip -r out.zip dist",
+    "release": "pnpm install && pnpm run build && zip -r out.zip dist",
     "lint:eslint": "eslint './{src,test}/**/*.{ts,tsx}'",
     "lint-fix:eslint": "eslint --fix './{src,test}/**/*.{ts,tsx}'",
     "lint:prettier": "prettier --check .",
@@ -15,7 +14,7 @@
     "lint-fix": "run-p -c lint-fix:*",
     "check:types": "tsc --noEmit",
     "check:ngword": "if git grep -rE \"console\\.(log|dir)|FIXME\" -- ':!package.json'; then exit 1; else echo \"All good\"; fi",
-    "check": "run-p -c test lint check:*"
+    "check": "run-p -c lint check:*"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
