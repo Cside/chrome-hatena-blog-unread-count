@@ -2,7 +2,10 @@ const BASE_URL = 'https://blog.hatena.ne.jp';
 const ANTENNA_URL = `${BASE_URL}/-/antenna`;
 const API_URL = `${BASE_URL}/api/recent_subscribing`;
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-const CHECK_INTERVAL = 15 * 60 * 1_000;
+// const CHECK_INTERVAL = 15 * 60 * 1_000;
+const CHECK_INTERVAL = 5 * 1_000;
+
+type ApiResponse = { count: number };
 
 chrome.action.onClicked.addListener(async () => {
   await chrome.action.setBadgeText({ text: '' });
@@ -18,16 +21,24 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 const checkUpdate = async () => {
-  // TODO:
-  //  - 5XX error handling
-  //  - not logged in
-  const res: { count: number } = await fetch(API_URL, {
-    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-  }).then((res) => res.json());
-
-  await chrome.action.setBadgeText({
-    text: res.count > 0 ? String(res.count) : '',
-  });
+  try {
+    const res = await fetch(API_URL, {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    });
+    if (!res.ok) {
+      throw new Error(
+        `Failed to request API. status: ${
+          res.status
+        }, body: ${await res.text()}`,
+      );
+    }
+    const resObject: ApiResponse = await res.json();
+    await chrome.action.setBadgeText({
+      text: resObject.count > 0 ? String(resObject.count) : '',
+    });
+  } catch (error) {
+    console.error(`Failed to fetch. ${error}`);
+  }
 };
 
 (async () => {
