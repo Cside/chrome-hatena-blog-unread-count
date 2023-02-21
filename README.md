@@ -1,4 +1,4 @@
-# はてなブログ 未読数表示 (Chrome Extension)
+# はてなブログの未読通知（ Chrome 拡張）
 
 [Chrome Web Store](TODO)
 
