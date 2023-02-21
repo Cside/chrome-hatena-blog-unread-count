@@ -8,7 +8,7 @@ if (!API_URL) throw new Error(`manifest.host_permissions[0] is not defined`);
 
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-const CHECK_INTERVAL = 5 * 60 * 1000;
+const CHECK_INTERVAL = 20 * 60 * 1000;
 
 type ApiResponse = { count: number };
 
