@@ -9,8 +9,7 @@ if (!API_URL) throw new Error(`manifest.host_permissions[0] is not defined`);
 
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-// const CHECK_INTERVAL_MINUTES = 20;
-const UPDATE_INTERVAL_MINUTES = 1; // FIXME
+const UPDATE_INTERVAL_MINUTES = 15;
 
 type ApiResponse = { count: number };
 
