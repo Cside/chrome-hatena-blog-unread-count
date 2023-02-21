@@ -49,9 +49,8 @@ const updateUnreadCount = async () => {
   });
   // Chrome 110+
   // https://developer.chrome.com/docs/extensions/reference/action/#method-setBadgeTextColor
-  if (chrome.action.setBadgeTextColor) {
+  if (chrome.action.setBadgeTextColor)
     await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
-  }
 
   setInterval(updateUnreadCount, CHECK_INTERVAL);
   await updateUnreadCount();
