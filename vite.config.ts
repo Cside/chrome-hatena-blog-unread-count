@@ -2,7 +2,6 @@ import type { ManifestV3Export } from '@crxjs/vite-plugin';
 import { crx } from '@crxjs/vite-plugin';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, PluginOption } from 'vite';
-import topLevelAwait from 'vite-plugin-top-level-await';
 import manifest from './manifest.json';
 import { version } from './package.json';
 
@@ -14,7 +13,6 @@ export default defineConfig({
   plugins: [
     crx({ manifest: manifest as ManifestV3Export }),
     ...(ENABLES_VISUALIZER ? [visualizer() as PluginOption] : []),
-    topLevelAwait(),
   ],
 });
 

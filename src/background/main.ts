@@ -31,7 +31,7 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 const updateUnreadCount = async () => {
-  console.info(`updated at: ${new Date().toLocaleTimeString()}`);
+  console.info(`  updated at: ${new Date().toLocaleTimeString()}`);
   try {
     const res = await fetch(API_URL, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -43,7 +43,7 @@ const updateUnreadCount = async () => {
         }, body: ${await res.text()}`,
       );
     const resObject: ApiResponse = await res.json();
-    console.info(`  response: ${JSON.stringify(resObject)}`);
+    console.info(`    response: ${JSON.stringify(resObject)}`);
 
     await chrome.action.setBadgeText({
       text: resObject.count > 0 ? String(resObject.count) : '',
@@ -69,4 +69,5 @@ chrome.alarms.onAlarm.addListener(updateUnreadCount);
     delayInMinutes: 0,
     periodInMinutes: UPDATE_INTERVAL_MINUTES,
   });
+  console.info(`created at: ${new Date().toLocaleTimeString()}`);
 })();
