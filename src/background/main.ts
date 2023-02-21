@@ -9,7 +9,8 @@ if (!API_URL) throw new Error(`manifest.host_permissions[0] is not defined`);
 
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-const CHECK_INTERVAL = 20 * 60 * 1000;
+// const CHECK_INTERVAL_MINUTES = 20;
+const UPDATE_INTERVAL_MINUTES = 1; // FIXME
 
 type ApiResponse = { count: number };
 
@@ -31,6 +32,7 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 const updateUnreadCount = async () => {
+  console.info(`updated at: ${new Date().toLocaleTimeString()}`);
   try {
     const res = await fetch(API_URL, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -42,6 +44,8 @@ const updateUnreadCount = async () => {
         }, body: ${await res.text()}`,
       );
     const resObject: ApiResponse = await res.json();
+    console.info(`  response: ${JSON.stringify(resObject)}`);
+
     await chrome.action.setBadgeText({
       text: resObject.count > 0 ? String(resObject.count) : '',
     });
@@ -49,6 +53,8 @@ const updateUnreadCount = async () => {
     console.error(`Failed to fetch. ${error}`);
   }
 };
+
+chrome.alarms.onAlarm.addListener(updateUnreadCount);
 
 (async () => {
   await chrome.action.setBadgeBackgroundColor({
@@ -59,6 +65,9 @@ const updateUnreadCount = async () => {
   if (chrome.action.setBadgeTextColor)
     await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
 
-  setInterval(updateUnreadCount, CHECK_INTERVAL);
-  await updateUnreadCount();
+  await chrome.alarms.clearAll();
+  chrome.alarms.create({
+    delayInMinutes: 0,
+    periodInMinutes: UPDATE_INTERVAL_MINUTES,
+  });
 })();
