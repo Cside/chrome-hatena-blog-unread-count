@@ -3,6 +3,7 @@ import { selectOrOpenTab } from './utils';
 const BASE_URL = 'https://blog.hatena.ne.jp';
 const ANTENNA_URL = `${BASE_URL}/-/antenna`;
 const API_URL = `${BASE_URL}/api/recent_subscribing`;
+const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
 const CHECK_INTERVAL = 15 * 60 * 1_000;
 
@@ -46,6 +47,12 @@ const updateUnreadCount = async () => {
   await chrome.action.setBadgeBackgroundColor({
     color: BADGE_BACKGROUND_COLOR,
   });
+  // Chrome 110+
+  // https://developer.chrome.com/docs/extensions/reference/action/#method-setBadgeTextColor
+  if (chrome.action.setBadgeTextColor) {
+    await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
+  }
+
   setInterval(updateUnreadCount, CHECK_INTERVAL);
   await updateUnreadCount();
 })();
