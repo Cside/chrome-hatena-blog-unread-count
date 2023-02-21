@@ -11,7 +11,7 @@
     "type": "module"
   },
   "permissions": ["webRequest", "tabs"],
-  "host_permissions": ["https://blog.hatena.ne.jp/*"],
+  "host_permissions": ["https://blog.hatena.ne.jp/api/recent_subscribing"],
   "icons": {
     "16": "images/icon16.png",
     "32": "images/icon32.png",

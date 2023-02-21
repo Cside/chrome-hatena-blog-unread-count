@@ -1,8 +1,11 @@
+import manifest from '../../manifest.json';
 import { selectOrOpenTab } from './utils';
 
 const BASE_URL = 'https://blog.hatena.ne.jp';
 const ANTENNA_URL = `${BASE_URL}/-/antenna`;
-const API_URL = `${BASE_URL}/api/recent_subscribing`;
+const API_URL = manifest.host_permissions[0];
+if (!API_URL) throw new Error(`manifest.host_permissions[0] is not defined`);
+
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
 const CHECK_INTERVAL = 5 * 60 * 1000;
