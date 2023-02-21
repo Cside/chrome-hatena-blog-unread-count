@@ -2,7 +2,8 @@ import manifest from '../../manifest.json';
 import { selectOrOpenTab } from './utils';
 
 const BASE_URL = 'https://blog.hatena.ne.jp';
-const ANTENNA_URL = `${BASE_URL}/-/antenna`;
+const ANTENNA_PATH = '/-/antenna';
+const ANTENNA_URL = `${BASE_URL}${ANTENNA_PATH}`;
 const API_URL = manifest.host_permissions[0];
 if (!API_URL) throw new Error(`manifest.host_permissions[0] is not defined`);
 
@@ -19,7 +20,11 @@ chrome.action.onClicked.addListener(async () => {
 
 chrome.webRequest.onCompleted.addListener(
   async (details) => {
-    if (details.method === 'GET' && !details.fromCache)
+    if (
+      details.method === 'GET' &&
+      // このチェックが無いと、/-/antenna_foo みたいなパスでも実行されてしまう
+      new URL(details.url).pathname === ANTENNA_PATH
+    )
       await chrome.action.setBadgeText({ text: '' });
   },
   { urls: [`${ANTENNA_URL}*`] },
