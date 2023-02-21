@@ -17,9 +17,13 @@ specifiers:
   prettier: ^2.8.1
   rimraf: ^4.1.2
   rollup-plugin-visualizer: ^5.9.0
+  ts-array-length: ^0.1.2
   ts-jest: ^29.0.3
   typescript: ^4.9.x
   vite: ^4.0.4
+
+dependencies:
+  ts-array-length: 0.1.2
 
 devDependencies:
   '@crxjs/vite-plugin': 1.0.14_vite@4.1.3
@@ -4313,6 +4317,10 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /ts-array-length/0.1.2:
+    resolution: {integrity: sha512-x/e5IkAhltwO/O9RZU4MQXlu8cAY9NJH6vwv53FgjK4Bmvwim3Ll6z5XB5xbP79v8Yu3g/fMI5sK42JKKEDudA==}
+    dev: false
 
   /ts-jest/29.0.5_orzzknleilowtsz34rkaotjvzm:
     resolution: {integrity: sha512-PL3UciSgIpQ7f6XjVOmbi96vmDHUqAyqDr8YxzopDqX3kfgYtX1cuNeBjP+L9sFXi6nzsGGA6R3fP3DDDJyrxA==}

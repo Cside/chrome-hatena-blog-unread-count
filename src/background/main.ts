@@ -5,7 +5,7 @@ const ANTENNA_URL = `${BASE_URL}/-/antenna`;
 const API_URL = `${BASE_URL}/api/recent_subscribing`;
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-const CHECK_INTERVAL = 15 * 60 * 1_000;
+const CHECK_INTERVAL = 5 * 60 * 1000;
 
 type ApiResponse = { count: number };
 
@@ -27,13 +27,12 @@ const updateUnreadCount = async () => {
     const res = await fetch(API_URL, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
-    if (!res.ok) {
+    if (!res.ok)
       throw new Error(
         `Failed to request API. status: ${
           res.status
         }, body: ${await res.text()}`,
       );
-    }
     const resObject: ApiResponse = await res.json();
     await chrome.action.setBadgeText({
       text: resObject.count > 0 ? String(resObject.count) : '',
