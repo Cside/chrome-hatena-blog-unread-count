@@ -1,8 +1,12 @@
 # はてなブログの未読通知（ Chrome 拡張）
 
-[Chrome Web Store](TODO)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm)
 
-TODO
+<a href="https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm">
+  <img src="https://user-images.githubusercontent.com/315510/220332645-00a27635-2156-46ce-8628-0b216302d1fb.png" />
+</a>
+
+はてなブログの購読リストの未読数を通知します。
 
 ## How to Build
 
