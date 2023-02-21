@@ -9,7 +9,18 @@ chrome.action.onClicked.addListener(async () => {
   await chrome.tabs.create({ url: ANTENNA_URL });
 });
 
+chrome.webRequest.onCompleted.addListener(
+  async (details) => {
+    if (details.method === 'GET' && !details.fromCache)
+      await chrome.action.setBadgeText({ text: '' });
+  },
+  { urls: [`${ANTENNA_URL}*`] },
+);
+
 const checkUpdate = async () => {
+  // TODO:
+  //  - 5XX error handling
+  //  - not logged in
   const res: { count: number } = await fetch(API_URL, {
     headers: { 'X-Requested-With': 'XMLHttpRequest' },
   }).then((res) => res.json());
