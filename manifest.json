@@ -11,6 +11,7 @@
     "type": "module"
   },
   "permissions": [],
+  "host_permissions": ["https://blog.hatena.ne.jp/*"],
   "icons": {
     "16": "images/icon16.png",
     "32": "images/icon32.png",
