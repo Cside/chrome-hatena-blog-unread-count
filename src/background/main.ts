@@ -1,15 +1,16 @@
+import { selectOrOpenTab } from './utils';
+
 const BASE_URL = 'https://blog.hatena.ne.jp';
 const ANTENNA_URL = `${BASE_URL}/-/antenna`;
 const API_URL = `${BASE_URL}/api/recent_subscribing`;
 const BADGE_BACKGROUND_COLOR = '#c5100b';
-// const CHECK_INTERVAL = 15 * 60 * 1_000;
-const CHECK_INTERVAL = 5 * 1_000;
+const CHECK_INTERVAL = 15 * 60 * 1_000;
 
 type ApiResponse = { count: number };
 
 chrome.action.onClicked.addListener(async () => {
   await chrome.action.setBadgeText({ text: '' });
-  await chrome.tabs.create({ url: ANTENNA_URL });
+  await selectOrOpenTab({ url: ANTENNA_URL });
 });
 
 chrome.webRequest.onCompleted.addListener(
