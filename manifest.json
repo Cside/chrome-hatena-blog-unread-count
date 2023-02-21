@@ -1,8 +1,8 @@
 {
   "version": "",
   "manifest_version": 3,
-  "name": "はてなブログの未読通知",
-  "description": "はてなブログの購読リストの未読数を通知します",
+  "name": "はてなブログ 未読数",
+  "description": "はてなブログの購読リストの未読の記事数を表示します",
   "action": {
     "default_icon": "images/icon38.png"
   },

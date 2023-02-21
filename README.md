@@ -1,4 +1,4 @@
-# はてなブログの未読通知（ Chrome 拡張）
+# はてなブログ 未読数（ Chrome 拡張）
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm)
 
