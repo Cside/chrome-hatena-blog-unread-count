@@ -3,6 +3,7 @@
   "manifest_version": 3,
   "name": "はてなブログ 未読数",
   "description": "はてなブログの購読リストの未読の記事の数を表示します",
+  "default_locale": "ja",
   "action": {
     "default_icon": "images/icon38.png"
   },
