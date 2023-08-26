@@ -31,37 +31,46 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 // update unread count
-chrome.alarms.onAlarm.addListener(async () => {
-  console.info(`  updated at: ${new Date().toLocaleTimeString()}`);
-  try {
-    const res = await fetch(API_URL, {
-      headers: { 'X-Requested-With': 'XMLHttpRequest' },
-    });
-    if (!res.ok)
-      throw new Error(
-        `Failed to request API. status: ${
-          res.status
-        }, body: ${await res.text()}`,
-      );
-    const resObject: ApiResponse = await res.json();
-    console.info(`    response: ${JSON.stringify(resObject)}`);
+const ALARM_NAME = 'update-unread-count';
 
-    await chrome.action.setBadgeText({
-      text: resObject.count > 0 ? String(resObject.count) : '',
-    });
-  } catch (error) {
-    console.error(`Failed to fetch. ${error}`);
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  switch (alarm.name) {
+    case ALARM_NAME:
+      console.info(`Start update at: ${new Date().toLocaleTimeString()}`);
+      try {
+        const res = await fetch(API_URL, {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        });
+        if (!res.ok)
+          throw new Error(
+            `Failed to request API. status: ${
+              res.status
+            }, body: ${await res.text()}`,
+          );
+        const resObject: ApiResponse = await res.json();
+        console.info(`  response: ${JSON.stringify(resObject)}`);
+
+        await chrome.action.setBadgeText({
+          text: resObject.count > 0 ? String(resObject.count) : '',
+        });
+      } catch (error) {
+        console.error(`Failed to fetch. ${error}`);
+      }
+      break;
+
+    default:
+      throw new Error(`Unknown alarm: ${alarm.name}`);
   }
 });
 
 chrome.runtime.onInstalled.addListener(async ({ reason }) => {
   if (reason !== chrome.runtime.OnInstalledReason.INSTALL) return;
 
-  await chrome.alarms.create({
+  await chrome.alarms.create(ALARM_NAME, {
     delayInMinutes: 0,
     periodInMinutes: UPDATE_INTERVAL_MINUTES,
   });
-  console.info(`created at: ${new Date().toLocaleTimeString()}`);
+  console.info(`Alarm is created at: ${new Date().toLocaleTimeString()}`);
 });
 
 await chrome.action.setBadgeBackgroundColor({
