@@ -17,7 +17,6 @@ export default defineConfig({
 });
 
 // utils
-
 function getEnv<T>(name: string): T | undefined {
   const val = process.env[name];
   return val === undefined ? val : JSON.parse(val);
