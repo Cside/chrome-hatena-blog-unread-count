@@ -65,9 +65,7 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
   console.info(`created at: ${new Date().toLocaleTimeString()}`);
 });
 
-(async () => {
-  await chrome.action.setBadgeBackgroundColor({
-    color: BADGE_BACKGROUND_COLOR,
-  });
-  await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
-})();
+await chrome.action.setBadgeBackgroundColor({
+  color: BADGE_BACKGROUND_COLOR,
+});
+await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
