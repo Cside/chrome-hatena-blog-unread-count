@@ -7,9 +7,11 @@ const INTERVAL_MINUTES = 15;
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   switch (alarm.name) {
-    case ALARM_NAME:
-      console.info(`Start update at: ${new Date().toLocaleTimeString()}`);
+    case ALARM_NAME: {
+      const now = new Date(alarm.scheduledTime);
+      console.info(`Start update at: ${now.toLocaleTimeString()}`);
       try {
+        // TODO retry...は今はしない
         const res = await fetch(API_URL, {
           headers: { 'X-Requested-With': 'XMLHttpRequest' },
         });
@@ -28,8 +30,11 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       } catch (error) {
         console.error(`Failed to fetch. ${error}`);
       }
+      const next = new Date(now.getTime());
+      next.setMinutes(now.getMinutes() + INTERVAL_MINUTES);
+      console.info(`Next Scheduled at: ${next.toLocaleTimeString()}`);
       break;
-
+    }
     default:
       throw new Error(`Unknown alarm: ${alarm.name}`);
   }

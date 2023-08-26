@@ -10,10 +10,6 @@ const ENABLES_VISUALIZER = getEnv<boolean>('ENABLES_VISUALIZER') ?? false;
 manifest.version = version;
 
 export default defineConfig({
-  build: {
-    // for top level await
-    target: 'esnext',
-  },
   plugins: [
     crx({ manifest: manifest as ManifestV3Export }),
     ...(ENABLES_VISUALIZER ? [visualizer() as PluginOption] : []),
