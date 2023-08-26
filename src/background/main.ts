@@ -55,16 +55,19 @@ const updateUnreadCount = async () => {
 
 chrome.alarms.onAlarm.addListener(updateUnreadCount);
 
-(async () => {
-  await chrome.action.setBadgeBackgroundColor({
-    color: BADGE_BACKGROUND_COLOR,
-  });
-  await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
+chrome.runtime.onInstalled.addListener(async ({ reason }) => {
+  if (reason !== chrome.runtime.OnInstalledReason.INSTALL) return;
 
-  await chrome.alarms.clearAll();
   await chrome.alarms.create({
     delayInMinutes: 0,
     periodInMinutes: UPDATE_INTERVAL_MINUTES,
   });
   console.info(`created at: ${new Date().toLocaleTimeString()}`);
+});
+
+(async () => {
+  await chrome.action.setBadgeBackgroundColor({
+    color: BADGE_BACKGROUND_COLOR,
+  });
+  await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
 })();
