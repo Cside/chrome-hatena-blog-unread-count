@@ -59,10 +59,7 @@ chrome.alarms.onAlarm.addListener(updateUnreadCount);
   await chrome.action.setBadgeBackgroundColor({
     color: BADGE_BACKGROUND_COLOR,
   });
-  // Chrome 110+
-  // https://developer.chrome.com/docs/extensions/reference/action/#method-setBadgeTextColor
-  if (chrome.action.setBadgeTextColor)
-    await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
+  await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
 
   await chrome.alarms.clearAll();
   await chrome.alarms.create({
