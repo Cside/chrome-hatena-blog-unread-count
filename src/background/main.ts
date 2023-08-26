@@ -30,7 +30,8 @@ chrome.webRequest.onCompleted.addListener(
   { urls: [`${ANTENNA_URL}*`] },
 );
 
-const updateUnreadCount = async () => {
+// update unread count
+chrome.alarms.onAlarm.addListener(async () => {
   console.info(`  updated at: ${new Date().toLocaleTimeString()}`);
   try {
     const res = await fetch(API_URL, {
@@ -51,9 +52,7 @@ const updateUnreadCount = async () => {
   } catch (error) {
     console.error(`Failed to fetch. ${error}`);
   }
-};
-
-chrome.alarms.onAlarm.addListener(updateUnreadCount);
+});
 
 chrome.runtime.onInstalled.addListener(async ({ reason }) => {
   if (reason !== chrome.runtime.OnInstalledReason.INSTALL) return;
