@@ -65,7 +65,7 @@ chrome.alarms.onAlarm.addListener(updateUnreadCount);
     await chrome.action.setBadgeTextColor({ color: BADGE_TEXT_COLOR });
 
   await chrome.alarms.clearAll();
-  chrome.alarms.create({
+  await chrome.alarms.create({
     delayInMinutes: 0,
     periodInMinutes: UPDATE_INTERVAL_MINUTES,
   });
