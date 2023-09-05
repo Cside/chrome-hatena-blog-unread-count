@@ -1,6 +1,5 @@
 /node_modules/
 /out.zip
-/.extension-id
 /dist/
 .git-pr-release
 /stats.html
