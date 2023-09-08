@@ -1,4 +1,10 @@
 {
-  "chrome": "badfajobjkkpkjnnpjggjcifpikjkggm",
-  "edge": "92dfd9f3-0c7a-4ddd-8585-a026448bd006"
+  "chrome": {
+    "id": "badfajobjkkpkjnnpjggjcifpikjkggm",
+    "developerId": "a66eb7ce-b7b6-4d92-a9cb-35d11a33896a"
+  },
+  "edge": {
+    "crxId": "ibeojhklnglnhjmddglogkmekhmfchgk",
+    "productId": "92dfd9f3-0c7a-4ddd-8585-a026448bd006"
+  }
 }
