@@ -14,6 +14,13 @@ export default defineConfig({
     crx({ manifest: manifest as ManifestV3Export }),
     ...(ENABLES_VISUALIZER ? [visualizer() as PluginOption] : []),
   ],
+  server: {
+    strictPort: true,
+    port: 5173,
+    hmr: {
+      clientPort: 5173,
+    },
+  },
 });
 
 // utils
