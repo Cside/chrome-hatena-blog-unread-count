@@ -17,9 +17,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
         });
         if (!res.ok)
           throw new Error(
-            `Failed to request API. status: ${
-              res.status
-            }, body: ${await res.text()}`,
+            `Failed to request API. status: ${res.status}, body: ${await res.text()}`,
           );
         const resObject: { count: number } = await res.json();
         console.info(`  response: ${JSON.stringify(resObject)}`);
