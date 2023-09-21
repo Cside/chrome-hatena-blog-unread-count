@@ -1,13 +1,15 @@
 # はてなブログ 未読数（ Chrome 拡張）
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm)
+はてなブログの購読リストの未読数を通知します。
+
+## インストール
+
+- [Chrome](https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/ibeojhklnglnhjmddglogkmekhmfchgk)
 
 <a href="https://chrome.google.com/webstore/detail/badfajobjkkpkjnnpjggjcifpikjkggm">
   <img src="https://user-images.githubusercontent.com/315510/220348695-0f3b8612-a5ae-414e-b884-5efafbc211ec.png" />
 </a>
-
-はてなブログの購読リストの未読数を通知します。
-
 ## How to Build
 
 ```
